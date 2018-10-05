@@ -24,6 +24,11 @@ func TestParseSize(t *testing.T) {
 		{"1MB", MByte},
 		{"1g", GByte},
 		{"1Gb", GByte},
+		{"1K1M", KByte + MByte},
+		{"1Kb1Mb", KByte + MByte},
+		{"1Kb1Mb1G", KByte + MByte + GByte},
+		{"1B1Kb1Mb1G", Byte + KByte + MByte + GByte},
+		{"1Kw", Size(0)},
 	}
 
 	for _, v := range result {

@@ -53,8 +53,14 @@ func ParseSize(s string) (size Size, err error) {
 				size += Size(oneSize * int(unit))
 				oneSize = 0
 				unit = Byte
+				continue
 			}
 
+			if s[i+1] >= '0' && s[i+1] <= '9' {
+				size += Size(oneSize * int(unit))
+				oneSize = 0
+				unit = Byte
+			}
 		}
 	}
 
