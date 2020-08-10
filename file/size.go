@@ -1,8 +1,6 @@
 package file
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type Size int
 
@@ -17,12 +15,16 @@ const (
 func ParseSize(s string) (size Size, err error) {
 
 	oneSize := 0
-	unit := Size(0)
+	unit := Size(1)
 
 	for i := 0; i < len(s); i++ {
 
 		if s[i] >= '0' && s[i] <= '9' {
 			oneSize = oneSize*10 + int(s[i]-'0')
+			if i+1 == len(s) {
+				size += Size(oneSize * int(unit))
+				return
+			}
 			continue
 		}
 

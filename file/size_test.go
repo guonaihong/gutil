@@ -12,6 +12,7 @@ type sizeResult struct {
 func TestParseSize(t *testing.T) {
 
 	result := []sizeResult{
+		{"12g", 12 * GByte},
 		{"1k", KByte},
 		{"1K", KByte},
 		{"1m", MByte},
@@ -29,6 +30,8 @@ func TestParseSize(t *testing.T) {
 		{"1Kb1Mb1G", KByte + MByte + GByte},
 		{"1B1Kb1Mb1G", Byte + KByte + MByte + GByte},
 		{"1Kw", Size(0)},
+		{"1b", Size(1)},
+		{"1", Size(1)},
 	}
 
 	for _, v := range result {
